@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends "res://Scripts/WalkingCharacter.gd"
 
 
 # Declare member variables here. Examples:
@@ -9,20 +9,15 @@ signal target_dropped()
 signal target_placed()
 signal path_changed(points)
 
-export var speed = 100
 var DragTarget : Node2D = null
 var ChaseTarget : Node2D = null
 var DragChild : Node2D = null
 var DragChildParent : Node2D = null
-onready var navigation_agent = $NavigationAgent2D
-onready var default_location = global_position
 var stunned = false
 var returning = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	DragTarget = get_node('/root/rough-map/level-map/DragTarget')
-	navigation_agent.set_navigation_map (get_node('/root/rough-map/level-map/NavigationPolygonInstance'))
-	navigation_agent.set_target_location(self.position)
 	
 	for N in get_node("/root/rough-map").get_children():
 		if "Player" in N.name:
@@ -32,9 +27,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var next_recompute = 0
-func _process(delta):
+func _process(_delta):
 	if returning:
-		return
+		navigation_agent.set_target_location(default_location)
+		emit_signal("path_changed", navigation_agent.get_nav_path())
 	elif null == DragChild:
 		var overlap_areas = $AggroRadius.get_overlapping_areas ( )
 		if overlap_areas.size() > 0:
@@ -44,15 +40,18 @@ func _process(delta):
 					ChaseTarget = overlap.get_node('..')
 					navigation_agent.set_target_location(ChaseTarget.global_position)
 					emit_signal("path_changed", navigation_agent.get_nav_path())
+					break
 		if next_recompute < OS.get_system_time_msecs():
 			next_recompute = OS.get_system_time_msecs() + 500
 			if null == ChaseTarget:
-				pass #emit_signal("path_changed", [])
+				navigation_agent.set_target_location(default_location)
+				emit_signal("path_changed", navigation_agent.get_nav_path())
 			else:
 				navigation_agent.set_target_location(ChaseTarget.global_position)
 				emit_signal("path_changed", navigation_agent.get_nav_path())
 	elif DragTarget:
-		if position.distance_squared_to(DragTarget.global_position) > 2:
+		if global_position.distance_to(DragTarget.global_position) > 5:
+			print("Dragging: ", global_position.distance_to(DragTarget.global_position))
 			navigation_agent.set_target_location(DragTarget.global_position)
 			emit_signal("path_changed", navigation_agent.get_nav_path())
 		else:
@@ -66,10 +65,15 @@ var last_saw_target = 0
 func _physics_process(delta):
 	navigation_agent.path_desired_distance = ceil(speed * delta)
 	navigation_agent.target_desired_distance  = ceil(speed * delta)
-	if ChaseTarget:
+	if ChaseTarget and null == DragChild:
 		var space_state = get_world_2d().direct_space_state
 		var result = space_state.intersect_ray(global_position, ChaseTarget.global_position)
-		if result:
+		if "HallMonitor" in ChaseTarget.get_node("..").name:
+			print(name, " Abandoned Player")
+			ChaseTarget = null
+			navigation_agent.set_target_location(default_location)
+			emit_signal("path_changed", navigation_agent.get_nav_path())
+		elif result:
 			if not "Player" == result.collider.name:
 				if last_saw_target < OS.get_system_time_msecs():
 					print(name, " Lost Sight of Player")
@@ -80,18 +84,13 @@ func _physics_process(delta):
 				last_saw_target = OS.get_system_time_msecs() + 15*1000
 	
 	if returning and not navigation_agent.is_navigation_finished():
-		var target = position.direction_to(navigation_agent.get_next_location())
 		if position.distance_squared_to(default_location) > 2:
-			print(self, " walking ", target.length())
-			navigation_agent.set_velocity(target*speed)
-			move_and_slide(target*speed)
+			TryNavigationStep()
 		else:
 			navigation_agent.set_target_location(self.position)
 			returning = false
 	elif not stunned and not navigation_agent.is_navigation_finished():
-		var target = position.direction_to(navigation_agent.get_next_location())
-		navigation_agent.set_velocity(target*speed)
-		move_and_slide(target*speed)
+		TryNavigationStep()
 		
 		if null == DragChild:
 			for x in range(get_slide_count()):
@@ -136,7 +135,7 @@ func _on_Player_shook_free(direction):
 		shake_velocity += direction
 		print("Shaking:", shake_velocity)
 	
-func _on_target_placed(DropTarget):
+func _on_target_placed(_DropTarget):
 	returning = true
 	DragChild = null
 	ChaseTarget = null

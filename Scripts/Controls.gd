@@ -1,6 +1,7 @@
 extends Node
 
 signal player_move(direction)
+signal player_interaction_requested()
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -13,7 +14,12 @@ func _ready():
 
 var current_movement_direction = Vector2.ZERO
 		
-func _physics_process(delta):
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		print("Interaction")
+		emit_signal("player_interaction_requested")
+		
+func _physics_process(_delta):
 	var move_direction = Vector2.ZERO
 	if Input.is_action_pressed("ui_up"):
 		move_direction += Vector2.UP

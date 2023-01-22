@@ -14,6 +14,10 @@ config/name="stop-the-assembly-godot-wild-jam"
 run/main_scene="res://Scenes/rough-map.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Controls="*res://Scripts/Controls.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

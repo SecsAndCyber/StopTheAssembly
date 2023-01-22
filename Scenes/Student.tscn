@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Student.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Student.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 7.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 40 )
 
 [node name="Student" type="KinematicBody2D"]
 position = Vector2( 875, 2 )
@@ -28,3 +31,9 @@ avoidance_enabled = true
 
 [node name="DeskSprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
+
+[node name="InteractionRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionRadius"]
+visible = false
+shape = SubResource( 2 )

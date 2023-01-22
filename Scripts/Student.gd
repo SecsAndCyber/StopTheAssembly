@@ -1,12 +1,10 @@
-extends KinematicBody2D
+extends "res://Scripts/WalkingCharacter.gd"
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
-export var speed = 100.0
-onready var navigation_agent = $NavigationAgent2D
 onready var MoveTarget : Node2D = $Chair
 onready var DeskObject : Node2D = $DeskSprite
 var MoveTargetLocation : Vector2
@@ -16,17 +14,13 @@ var done = false
 func _ready():
 	MoveTargetLocation = MoveTarget.global_position
 	DeskLocation = DeskObject.global_position
-	navigation_agent.set_navigation_map (get_node('/root/rough-map/level-map/NavigationPolygonInstance'))
-	navigation_agent.set_target_location(MoveTarget.position)
 	speed = (randi() % 100)+25
 
 func _physics_process(_delta):
 	if done:
 		return
 	if not navigation_agent.is_navigation_finished():
-		var target = position.direction_to(navigation_agent.get_next_location())
-		navigation_agent.set_velocity(target*speed)
-		move_and_slide(target*speed)
+		TryNavigationStep()
 		MoveTarget.global_position = MoveTargetLocation
 		navigation_agent.set_target_location(MoveTarget.global_position)
 	DeskObject.global_position = DeskLocation

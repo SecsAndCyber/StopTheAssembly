@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://scripts/Controls.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Stop-the-assembly-rough-map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/HallMonitor.tscn" type="PackedScene" id=4]
@@ -12,235 +11,227 @@
 [node name="rough-map" type="Node2D"]
 
 [node name="level-map" parent="." instance=ExtResource( 2 )]
-position = Vector2( 777, 162 )
-
-[node name="Controls" type="Node" parent="."]
-script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 409, 758 )
+position = Vector2( -384, 606 )
 
 [node name="NavigationServer" type="Node" parent="."]
 script = ExtResource( 5 )
 
-[node name="Line2D" type="Line2D" parent="."]
-position = Vector2( -2607.95, 0 )
-scale = Vector2( 7.86301, 1 )
-width = 5.0
-
 [node name="Students" type="Node" parent="."]
 
 [node name="Student" parent="Students" instance=ExtResource( 6 )]
+position = Vector2( 97.216, -158 )
 
 [node name="Chair" parent="Students/Student" instance=ExtResource( 7 )]
 position = Vector2( -812, -418 )
 
 [node name="Student2" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 919, 5 )
+position = Vector2( 141.216, -155 )
 
 [node name="Chair" parent="Students/Student2" instance=ExtResource( 7 )]
 position = Vector2( -812, -418 )
 
 [node name="Student3" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 963, 7 )
+position = Vector2( 185.216, -153 )
 
 [node name="Chair" parent="Students/Student3" instance=ExtResource( 7 )]
 position = Vector2( -812, -418 )
 
 [node name="Student4" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1058, 13 )
+position = Vector2( 280.216, -147 )
 
 [node name="Chair" parent="Students/Student4" instance=ExtResource( 7 )]
 position = Vector2( -695, -325 )
 
 [node name="Student5" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1097, 13 )
+position = Vector2( 319.216, -147 )
 
 [node name="Chair" parent="Students/Student5" instance=ExtResource( 7 )]
 position = Vector2( -812, -418 )
 
 [node name="Student6" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1134, 13 )
+position = Vector2( 356.216, -147 )
 
 [node name="Chair" parent="Students/Student6" instance=ExtResource( 7 )]
 position = Vector2( -812, -418 )
 
 [node name="Student7" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1169, 12 )
+position = Vector2( 391.216, -148 )
 
 [node name="Chair" parent="Students/Student7" instance=ExtResource( 7 )]
 position = Vector2( -812, -418 )
 
 [node name="Student8" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1247, 236 )
+position = Vector2( 469.216, 76 )
 
 [node name="Chair" parent="Students/Student8" instance=ExtResource( 7 )]
 position = Vector2( -1186, -602 )
 
 [node name="Student9" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1327, 237 )
+position = Vector2( 549.216, 77 )
 
 [node name="Chair" parent="Students/Student9" instance=ExtResource( 7 )]
 position = Vector2( -1087, -594 )
 
 [node name="Student10" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1246, 284 )
+position = Vector2( 468.216, 124 )
 
 [node name="Chair" parent="Students/Student10" instance=ExtResource( 7 )]
 position = Vector2( -1139, -649 )
 
 [node name="Student11" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1323, 282 )
+position = Vector2( 545.216, 122 )
 
 [node name="Chair" parent="Students/Student11" instance=ExtResource( 7 )]
 position = Vector2( -1038, -639 )
 
 [node name="Student12" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1251, 364 )
+position = Vector2( 473.216, 204 )
 
 [node name="Chair" parent="Students/Student12" instance=ExtResource( 7 )]
 position = Vector2( -1097, -728 )
 
 [node name="Student13" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1314, 360 )
+position = Vector2( 536.216, 200 )
 
 [node name="Chair" parent="Students/Student13" instance=ExtResource( 7 )]
 position = Vector2( -990, -717 )
 
 [node name="Student14" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1168, 514 )
+position = Vector2( 390.216, 354 )
 
 [node name="Chair" parent="Students/Student14" instance=ExtResource( 7 )]
 position = Vector2( -1106, -831 )
 
 [node name="Student15" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1123, 514 )
+position = Vector2( 345.216, 354 )
 
 [node name="Chair" parent="Students/Student15" instance=ExtResource( 7 )]
 position = Vector2( -761, -874 )
 
 [node name="Student16" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1076, 513 )
+position = Vector2( 298.216, 353 )
 
 [node name="Chair" parent="Students/Student16" instance=ExtResource( 7 )]
 position = Vector2( -969, -785 )
 
 [node name="Student17" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1074, 565 )
+position = Vector2( 296.216, 405 )
 
 [node name="Chair" parent="Students/Student17" instance=ExtResource( 7 )]
 position = Vector2( -681, -969 )
 
 [node name="Student18" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1119, 562 )
+position = Vector2( 341.216, 402 )
 
 [node name="Chair" parent="Students/Student18" instance=ExtResource( 7 )]
 position = Vector2( -688, -968 )
 
 [node name="Student19" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 1164, 565 )
+position = Vector2( 386.216, 405 )
 
 [node name="Chair" parent="Students/Student19" instance=ExtResource( 7 )]
 position = Vector2( -734, -928 )
 
 [node name="Student20" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 971, 503 )
+position = Vector2( 193.216, 343 )
 
 [node name="Chair" parent="Students/Student20" instance=ExtResource( 7 )]
 position = Vector2( -864, -819 )
 
 [node name="Student21" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 926, 502 )
+position = Vector2( 148.216, 342 )
 
 [node name="Chair" parent="Students/Student21" instance=ExtResource( 7 )]
 position = Vector2( -772, -819 )
 
 [node name="Student22" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 878, 503 )
+position = Vector2( 100.216, 343 )
 
 [node name="Chair" parent="Students/Student22" instance=ExtResource( 7 )]
 position = Vector2( -816, -773 )
 
 [node name="Student23" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 878, 560 )
+position = Vector2( 100.216, 400 )
 
 [node name="Chair" parent="Students/Student23" instance=ExtResource( 7 )]
 position = Vector2( -482, -922 )
 
 [node name="Student24" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 921, 557 )
+position = Vector2( 143.216, 397 )
 
 [node name="Chair" parent="Students/Student24" instance=ExtResource( 7 )]
 position = Vector2( -637, -867 )
 
 [node name="Student25" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 967, 559 )
+position = Vector2( 189.216, 399 )
 
 [node name="Chair" parent="Students/Student25" instance=ExtResource( 7 )]
 position = Vector2( -727, -869 )
 
 [node name="Student26" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 785, 627 )
+position = Vector2( 7.216, 467 )
 
 [node name="Chair" parent="Students/Student26" instance=ExtResource( 7 )]
 position = Vector2( -462, -935 )
 
 [node name="Student27" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 746, 625 )
+position = Vector2( -31.784, 465 )
 
 [node name="Chair" parent="Students/Student27" instance=ExtResource( 7 )]
 position = Vector2( -590, -899 )
 
 [node name="Student28" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 617, 511 )
+position = Vector2( -160.784, 351 )
 
 [node name="Chair" parent="Students/Student28" instance=ExtResource( 7 )]
 position = Vector2( -467, -741 )
 
 [node name="Student29" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 584, 513 )
+position = Vector2( -193.784, 353 )
 
 [node name="Chair" parent="Students/Student29" instance=ExtResource( 7 )]
 position = Vector2( -478, -739 )
 
 [node name="Student30" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 544, 513 )
+position = Vector2( -233.784, 353 )
 
 [node name="Chair" parent="Students/Student30" instance=ExtResource( 7 )]
 position = Vector2( -482, -739 )
 
 [node name="Student31" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 591, 659 )
+position = Vector2( -186.784, 499 )
 
 [node name="Chair" parent="Students/Student31" instance=ExtResource( 7 )]
 position = Vector2( -436, -847 )
 
 [node name="Student32" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 552, 659 )
+position = Vector2( -225.784, 499 )
 
 [node name="Chair" parent="Students/Student32" instance=ExtResource( 7 )]
 position = Vector2( -447, -845 )
 
 [node name="Student33" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 515, 660 )
+position = Vector2( -262.784, 500 )
 
 [node name="Chair" parent="Students/Student33" instance=ExtResource( 7 )]
 position = Vector2( -452, -845 )
 
 [node name="Student34" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 512, 708 )
+position = Vector2( -265.784, 548 )
 
 [node name="Chair" parent="Students/Student34" instance=ExtResource( 7 )]
 position = Vector2( -272, -972 )
 
 [node name="Student35" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 551, 707 )
+position = Vector2( -226.784, 547 )
 
 [node name="Chair" parent="Students/Student35" instance=ExtResource( 7 )]
 position = Vector2( -86, -1070 )
 
 [node name="Student36" parent="Students" instance=ExtResource( 6 )]
-position = Vector2( 592, 707 )
+position = Vector2( -185.784, 547 )
 
 [node name="Chair" parent="Students/Student36" instance=ExtResource( 7 )]
 position = Vector2( -125, -1112 )
@@ -248,28 +239,23 @@ position = Vector2( -125, -1112 )
 [node name="Enemies" type="Node" parent="."]
 
 [node name="HallMonitor" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 534, 263 )
+position = Vector2( -243.784, 103 )
 
 [node name="HallMonitor6" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 443, -195 )
+position = Vector2( -334.784, -355 )
 
 [node name="HallMonitor2" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 1114.78, 383 )
+position = Vector2( 337, 223 )
 
 [node name="HallMonitor3" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 74.784, 481 )
+position = Vector2( -703, 321 )
 
 [node name="HallMonitor4" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 67.784, 793 )
+position = Vector2( -710, 633 )
 
 [node name="HallMonitor5" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 749, 536 )
+position = Vector2( -28.7841, 376 )
 
 [node name="LunchServer" type="Sprite" parent="."]
-position = Vector2( 214, 63 )
+position = Vector2( -562, -97 )
 texture = ExtResource( 8 )
-
-[connection signal="player_move" from="Controls" to="Player" method="_on_Controls_player_move"]
-[connection signal="path_changed" from="Enemies/HallMonitor" to="NavigationServer" method="_on_HallMonitor_path_changed"]
-[connection signal="path_changed" from="Enemies/HallMonitor6" to="NavigationServer" method="_on_HallMonitor_path_changed"]
-[connection signal="path_changed" from="Enemies/HallMonitor2" to="NavigationServer" method="_on_HallMonitor2_path_changed"]

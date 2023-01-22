@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 signal shook_free(direction)
+
+onready var Controls = get_node("/root/Controls")
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -10,8 +12,10 @@ var ignore_movement_input = false
 var finished = false
 export var allow_debug = false
 onready var parent_node = get_node("..")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Controls.connect("player_move", self, "_on_Controls_player_move")
 	for N in get_node("/root/rough-map/Enemies").get_children():
 		if "HallMonitor" in N.name:
 			N.connect("target_grabbed", self, "_on_target_grabbed")
@@ -31,7 +35,7 @@ func _physics_process(_delta):
 		$CollisionShape2D.disabled = false
 		$InteractionRadius.monitorable = true
 		if not current_movement_direction == Vector2.ZERO:
-			move_and_slide (current_movement_direction * speed)
+			var _velocity = move_and_slide (current_movement_direction * speed)
 			current_movement_direction = Vector2.ZERO
 
 
@@ -44,7 +48,7 @@ func _on_Controls_player_move(direction):
 		emit_signal("shook_free", direction)
 
 
-func _on_target_placed(DropTarget):
+func _on_target_placed(_DropTarget):
 	print("Done!")
 	finished = true
 	ignore_movement_input = true
