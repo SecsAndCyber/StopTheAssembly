@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=17 format=2]
 
+[ext_resource path="res://Scenes/Vent.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Stop-the-assembly-rough-map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/HallMonitor.tscn" type="PackedScene" id=4]
@@ -7,13 +8,45 @@
 [ext_resource path="res://Scenes/Student.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Chair.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/LunchServer.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/Switch.gd" type="Script" id=9]
+[ext_resource path="res://Assets/AC_On.png" type="Texture" id=10]
+[ext_resource path="res://Assets/AC_Off.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Desk.png" type="Texture" id=12]
+[ext_resource path="res://Assets/CrowBar.png" type="Texture" id=13]
+[ext_resource path="res://Scripts/CrowBar.gd" type="Script" id=14]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 40 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="rough-map" type="Node2D"]
 
 [node name="level-map" parent="." instance=ExtResource( 2 )]
 
+[node name="Desk" type="Sprite" parent="level-map"]
+position = Vector2( 392, -88 )
+texture = ExtResource( 12 )
+
+[node name="CrowBar" type="Sprite" parent="level-map"]
+position = Vector2( 104, -72 )
+texture = ExtResource( 13 )
+script = ExtResource( 14 )
+
+[node name="InteractionRadius" type="Area2D" parent="level-map/CrowBar"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level-map/CrowBar/InteractionRadius"]
+visible = false
+shape = SubResource( 2 )
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -384, 606 )
+position = Vector2( 392, -96 )
 
 [node name="NavigationServer" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -253,9 +286,88 @@ position = Vector2( -703, 321 )
 [node name="HallMonitor4" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( -710, 633 )
 
+[node name="HallMonitor7" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( -368, 736 )
+
 [node name="HallMonitor5" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( -28.7841, 376 )
 
 [node name="LunchServer" type="Sprite" parent="."]
 position = Vector2( -562, -97 )
 texture = ExtResource( 8 )
+
+[node name="Vents" type="Node" parent="."]
+
+[node name="Vent" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( -400, -368 )
+
+[node name="Vent2" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( -784, -592 )
+
+[node name="Vent3" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( -272, -592 )
+
+[node name="Vent4" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( -280, -16 )
+
+[node name="Vent7" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( 16, -16 )
+
+[node name="Vent8" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( 176, 280 )
+
+[node name="Vent9" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( -232, 280 )
+
+[node name="Vent10" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( -712, 400 )
+
+[node name="Vent11" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( -512, 400 )
+
+[node name="Vent12" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( -712, 552 )
+
+[node name="Vent13" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( -144, 520 )
+
+[node name="Vent14" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( -64, 280 )
+
+[node name="Vent15" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( 392, 288 )
+
+[node name="Vent16" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( 496, 48 )
+
+[node name="Vent17" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( 304, -176 )
+
+[node name="Vent18" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( 120, -176 )
+
+[node name="Vent19" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( 240, -304 )
+
+[node name="Vent20" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( 240, -432 )
+
+[node name="Vent21" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( -240, -432 )
+
+[node name="Vent5" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( -656, -16 )
+
+[node name="Vent6" parent="Vents" instance=ExtResource( 1 )]
+position = Vector2( -656, -240 )
+
+[node name="Switch" type="AnimatedSprite" parent="."]
+position = Vector2( -720, -192 )
+frames = SubResource( 1 )
+script = ExtResource( 9 )
+
+[node name="InteractionRadius" type="Area2D" parent="Switch"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Switch/InteractionRadius"]
+visible = false
+shape = SubResource( 2 )

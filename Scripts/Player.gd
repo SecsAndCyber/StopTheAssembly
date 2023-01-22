@@ -12,6 +12,8 @@ var ignore_movement_input = false
 var finished = false
 export var allow_debug = false
 onready var parent_node = get_node("..")
+onready var detection_radius = $InteractionRadius/CollisionShape2D.shape.radius
+onready var current_detection_radius = detection_radius
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +24,14 @@ func _ready():
 			N.connect("target_dropped", self, "_on_target_dropped")
 			N.connect("target_placed", self, "_on_target_placed")
 
+func _process(_delta):
+	$InteractionRadius/CollisionShape2D.shape.radius = detection_radius
+	var overlap_areas = $InteractionRadius.get_overlapping_areas ( )
+	$InteractionRadius/CollisionShape2D.shape.radius = current_detection_radius
+	if overlap_areas.size() > 0:
+		for overlap in overlap_areas:
+			if "OutOfBounds" == overlap.get_node('.').name:
+				Controls.GameStateChange(Controls.GAME_STATE_OOB)
 
 func _physics_process(_delta):
 	if allow_debug:
@@ -50,6 +60,7 @@ func _on_Controls_player_move(direction):
 
 func _on_target_placed(_DropTarget):
 	print("Done!")
+	Controls.ac_changed(true)
 	finished = true
 	ignore_movement_input = true
 	$CollisionShape2D.disabled = true
@@ -69,3 +80,5 @@ func _on_target_dropped():
 	$CollisionShape2D.disabled = false
 	$InteractionRadius.monitorable = true
 	ignore_movement_input = false
+	current_detection_radius += 10
+	$InteractionRadius/CollisionShape2D.shape.radius = current_detection_radius

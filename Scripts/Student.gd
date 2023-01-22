@@ -15,6 +15,7 @@ func _ready():
 	MoveTargetLocation = MoveTarget.global_position
 	DeskLocation = DeskObject.global_position
 	speed = (randi() % 100)+25
+	navigation_agent.set_target_location(MoveTarget.global_position)
 
 func _physics_process(_delta):
 	if done:

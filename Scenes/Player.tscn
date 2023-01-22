@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Hud.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 16.0
@@ -28,7 +29,34 @@ shape = SubResource( 1 )
 frames = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+z_index = 10
 current = true
+script = ExtResource( 3 )
+
+[node name="Clock" type="RichTextLabel" parent="Camera2D"]
+margin_left = 346.0
+margin_top = -289.0
+margin_right = 399.0
+margin_bottom = -266.0
+rect_scale = Vector2( 3, 3 )
+mouse_filter = 2
+text = "8:30"
+scroll_active = false
+deselect_on_focus_loss_enabled = false
+
+[node name="Temperature" type="RichTextLabel" parent="Camera2D"]
+margin_left = 346.0
+margin_top = -225.0
+margin_right = 399.0
+margin_bottom = -202.0
+rect_scale = Vector2( 3, 3 )
+mouse_filter = 2
+text = "75° F"
+scroll_active = false
+deselect_on_focus_loss_enabled = false
+
+[node name="Timer" type="Timer" parent="Camera2D"]
+autostart = true
 
 [node name="InteractionRadius" type="Area2D" parent="."]
 

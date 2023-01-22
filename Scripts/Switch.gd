@@ -1,34 +1,31 @@
-extends StaticBody2D
+extends AnimatedSprite
+
 
 onready var Controls = get_node("/root/Controls")
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-export var locked = true
-export var open = false
+export var on = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Controls.connect("player_interaction_requested", self, "_on_Controls_player_interaction_requested")
+	Controls.connect("ac_changed", self, "_on_Controls_ac_changed")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	$CollisionShape2D.disabled = open
-	if open:
-		$Sprite.frame = 1
+	if on:
+		frame = 0
 	else:
-		$Sprite.frame = 0
-		
+		frame = 1
+
 func _on_Controls_player_interaction_requested():
 	var overlap_areas = $InteractionRadius.get_overlapping_areas ( )
 	if overlap_areas.size() > 0:
 		for overlap in overlap_areas:
 			if "Player" == overlap.get_node('..').name:
-				if not locked:
-					open = not open
-				else:
-					for N in overlap.get_node('..').get_children():
-						if "CrowBar" in N.name:
-							open = true
+				on = not on
+				Controls.ac_changed(on)
+
+func _on_Controls_ac_changed(state):
+	on = state

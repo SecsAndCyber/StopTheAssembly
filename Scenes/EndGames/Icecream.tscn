@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/ReturnToMenuButton.tscn" type="PackedScene" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 24.0
+margin_top = 112.0
+margin_right = 224.0
+margin_bottom = 200.0
+rect_scale = Vector2( 5, 5 )
+text = "The overheated school
+  ended early!
+You walk to the ice cream
+  store to eat with your
+  friends!"
+scroll_active = false
+deselect_on_focus_loss_enabled = false
+
+[node name="ReturnToMenu" parent="." instance=ExtResource( 1 )]
+margin_left = 456.0
+margin_top = 440.0
+margin_right = 640.0
+margin_bottom = 488.0

@@ -11,12 +11,17 @@ config_version=4
 [application]
 
 config/name="stop-the-assembly-godot-wild-jam"
-run/main_scene="res://Scenes/rough-map.tscn"
+run/main_scene="res://Scenes/EndGames/Splash1.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Controls="*res://Scripts/Controls.gd"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [gui]
 

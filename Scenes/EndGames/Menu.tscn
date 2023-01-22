@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Logos/background.PNG" type="Texture" id=4]
+
+[node name="MenuScreen" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 536, 320 )
+scale = Vector2( 5.74, 9.65942 )
+z_index = -3
+texture = ExtResource( 4 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 176.0
+margin_top = 48.0
+margin_right = 312.0
+margin_bottom = 70.0
+rect_scale = Vector2( 5, 5 )
+text = "Stop The Assembly!"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+margin_left = 16.0
+margin_top = 120.0
+margin_right = 344.0
+margin_bottom = 235.0
+rect_scale = Vector2( 3, 3 )
+mouse_filter = 2
+text = "Welcome student. Please gather in the auditorium.
+Today we have an assembly.
+Required attendence!
+
+Be aware, today is unseasonably hot.
+If the school over heats then we will have to send you all home."
+scroll_active = false
+deselect_on_focus_loss_enabled = false
+
+[node name="Button" type="Button" parent="."]
+margin_left = 304.0
+margin_top = 480.0
+margin_right = 488.0
+margin_bottom = 536.0
+rect_scale = Vector2( 2, 2 )
+text = "Play"
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
