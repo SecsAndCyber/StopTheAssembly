@@ -43,5 +43,3 @@ target_desired_distance = 5.0
 path_max_distance = 50.0
 avoidance_enabled = true
 radius = 5.0
-
-[node name="RayCast2D" type="RayCast2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/Controls.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Stop-the-assembly-rough-map.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/NavigationServer.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Student.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Chair.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/LunchServer.png" type="Texture" id=8]
 
 [node name="rough-map" type="Node2D"]
 
@@ -263,6 +264,10 @@ position = Vector2( 67.784, 793 )
 
 [node name="HallMonitor5" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 749, 536 )
+
+[node name="LunchServer" type="Sprite" parent="."]
+position = Vector2( 214, 63 )
+texture = ExtResource( 8 )
 
 [connection signal="player_move" from="Controls" to="Player" method="_on_Controls_player_move"]
 [connection signal="path_changed" from="Enemies/HallMonitor" to="NavigationServer" method="_on_HallMonitor_path_changed"]

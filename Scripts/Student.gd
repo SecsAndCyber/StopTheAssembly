@@ -8,11 +8,14 @@ extends KinematicBody2D
 export var speed = 100.0
 onready var navigation_agent = $NavigationAgent2D
 onready var MoveTarget : Node2D = $Chair
+onready var DeskObject : Node2D = $DeskSprite
 var MoveTargetLocation : Vector2
+var DeskLocation : Vector2
 var done = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	MoveTargetLocation = MoveTarget.global_position
+	DeskLocation = DeskObject.global_position
 	navigation_agent.set_navigation_map (get_node('/root/rough-map/level-map/NavigationPolygonInstance'))
 	navigation_agent.set_target_location(MoveTarget.position)
 	speed = (randi() % 100)+25
@@ -20,10 +23,10 @@ func _ready():
 func _physics_process(_delta):
 	if done:
 		return
-	MoveTarget.global_position = MoveTargetLocation
 	if not navigation_agent.is_navigation_finished():
 		var target = position.direction_to(navigation_agent.get_next_location())
 		navigation_agent.set_velocity(target*speed)
 		move_and_slide(target*speed)
 		MoveTarget.global_position = MoveTargetLocation
 		navigation_agent.set_target_location(MoveTarget.global_position)
+	DeskObject.global_position = DeskLocation

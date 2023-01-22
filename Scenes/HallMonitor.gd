@@ -71,14 +71,12 @@ func _physics_process(delta):
 		var result = space_state.intersect_ray(global_position, ChaseTarget.global_position)
 		if result:
 			if not "Player" == result.collider.name:
-				print("last_saw_target:",OS.get_system_time_msecs() - last_saw_target)
 				if last_saw_target < OS.get_system_time_msecs():
-					print("Lost Sight of Player")
+					print(name, " Lost Sight of Player")
 					ChaseTarget = null
 					navigation_agent.set_target_location(default_location)
 					emit_signal("path_changed", navigation_agent.get_nav_path())
 			else:
-				print("Looking at ", result.collider.name)
 				last_saw_target = OS.get_system_time_msecs() + 15*1000
 	
 	if returning and not navigation_agent.is_navigation_finished():
@@ -130,13 +128,13 @@ func _physics_process(delta):
 				yield(get_tree().create_timer(2), "timeout")
 				stunned = false
 				$CollisionShape2D.disabled = false
-		target = Vector2.ZERO
 
 var shake_velocity = Vector2.ZERO
 export var shake_threshold = 5
 func _on_Player_shook_free(direction):
-	shake_velocity += direction
-	print("Shaking:",shake_velocity)
+	if not DragChild == null:
+		shake_velocity += direction
+		print("Shaking:", shake_velocity)
 	
 func _on_target_placed(DropTarget):
 	returning = true
