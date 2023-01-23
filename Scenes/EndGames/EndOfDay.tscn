@@ -10,6 +10,7 @@ margin_top = 112.0
 margin_right = 224.0
 margin_bottom = 200.0
 rect_scale = Vector2( 5, 5 )
+mouse_filter = 2
 text = "The school day has ended.
 You walk home
   to do homework"
