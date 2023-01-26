@@ -1,52 +1,27 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Scenes/Vent.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Objects/Vent.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Stop-the-assembly-rough-map.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/HallMonitor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Characters/HallMonitor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/NavigationServer.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Student.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Chair.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Objects/Chair.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/LunchServer.png" type="Texture" id=8]
-[ext_resource path="res://Scripts/Switch.gd" type="Script" id=9]
-[ext_resource path="res://Assets/AC_On.png" type="Texture" id=10]
-[ext_resource path="res://Assets/AC_Off.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/Objects/CrowBar.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Objects/Switch.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/Desk.png" type="Texture" id=12]
-[ext_resource path="res://Assets/CrowBar.png" type="Texture" id=13]
-[ext_resource path="res://Scripts/CrowBar.gd" type="Script" id=14]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 24, 40 )
-
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
 
 [node name="rough-map" type="Node2D"]
 
 [node name="level-map" parent="." instance=ExtResource( 2 )]
+z_index = -10
 
 [node name="Desk" type="Sprite" parent="level-map"]
 position = Vector2( 392, -88 )
 texture = ExtResource( 12 )
 
-[node name="CrowBar" type="Sprite" parent="level-map"]
-position = Vector2( 104, -72 )
-texture = ExtResource( 13 )
-script = ExtResource( 14 )
-
-[node name="InteractionRadius" type="Area2D" parent="level-map/CrowBar"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="level-map/CrowBar/InteractionRadius"]
-visible = false
-shape = SubResource( 2 )
-
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 392, -96 )
+[node name="CrowBar" parent="level-map" instance=ExtResource( 9 )]
 
 [node name="NavigationServer" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -361,13 +336,9 @@ position = Vector2( -656, -16 )
 [node name="Vent6" parent="Vents" instance=ExtResource( 1 )]
 position = Vector2( -656, -240 )
 
-[node name="Switch" type="AnimatedSprite" parent="."]
-position = Vector2( -720, -192 )
-frames = SubResource( 1 )
-script = ExtResource( 9 )
+[node name="Switch" parent="." instance=ExtResource( 10 )]
+position = Vector2( -712, -208 )
+z_index = -1
 
-[node name="InteractionRadius" type="Area2D" parent="Switch"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Switch/InteractionRadius"]
-visible = false
-shape = SubResource( 2 )
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 392, -96 )

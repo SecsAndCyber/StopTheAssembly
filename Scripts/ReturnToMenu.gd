@@ -16,3 +16,7 @@ func _ready():
 func _on_pressed():
 	print("pressed")
 	Controls.GameStateChange(Controls.GAME_STATE_STARTED)
+
+
+func _on_ReturnToMenu_pressed():
+	_on_pressed()

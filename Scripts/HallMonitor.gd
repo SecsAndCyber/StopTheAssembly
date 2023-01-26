@@ -1,4 +1,4 @@
-extends "res://Scripts/WalkingCharacter.gd"
+extends "res://Scripts/Superclasses/WalkingCharacter.gd"
 
 
 # Declare member variables here. Examples:

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Hud.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Hud.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 16.0

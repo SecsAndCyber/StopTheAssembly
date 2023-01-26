@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scenes/Vent.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Vent.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Vent_Animiation1.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Vent.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Vent_Animiation2.png" type="Texture" id=4]
