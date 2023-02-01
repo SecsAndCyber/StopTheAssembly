@@ -257,6 +257,7 @@ position = Vector2( 337, 223 )
 
 [node name="HallMonitor3" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( -703, 321 )
+Frame = 1
 
 [node name="HallMonitor4" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( -710, 633 )

@@ -15,6 +15,8 @@ var DragChild : Node2D = null
 var DragChildParent : Node2D = null
 var stunned = false
 var returning = false
+
+export var Frame = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	DragTarget = get_node('/root/rough-map/level-map/DragTarget')
@@ -28,6 +30,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var next_recompute = 0
 func _process(_delta):
+	$AnimatedSprite.frame = Frame
 	if returning:
 		navigation_agent.set_target_location(default_location)
 		emit_signal("path_changed", navigation_agent.get_nav_path())
